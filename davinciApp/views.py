@@ -7,12 +7,7 @@ from .functions import generateBlogTopicIdeas, generateBlogSectionTitles, genera
 # Create your views here.
 
 def home(request):
-    return render (request, 'index.html')
-
-
-
-
-
+    return render (request, 'blog-topic.html')
 
 
 def blogTopic(request):
@@ -36,7 +31,7 @@ def blogTopic(request):
             messages.error(request, 'OOPs, we could not generate blog ideas for you, retry')
             return redirect('blog-topic')
 
-    return render(request, 'blog-topic.html', context)
+    return render(request, 'blog-topicc.html', context)
 
 
 
@@ -111,3 +106,39 @@ def useBlogTopic(request, blogTopic):
         return redirect('view-generated-blog', slug=blog.slug)
 
     return render(request, 'select-blog-sections.html', context)
+
+
+
+
+def generatedBlog(request):
+    context = {}
+
+    # Retrieve the generated blog topics from the user's session
+    blogTopics = request.session.get('blogTopics', [])
+
+    if not blogTopics:
+        # Handle the case where there are no generated blog topics
+        context['error_message'] = "No blog topics have been generated. Please generate blog topics first."
+    else:
+        # Generate full blog content based on the topics
+        blogContent = []
+
+        # Define a function to generate content using GPT-3
+        def generate_blog_content(topic):
+            prompt = f"Write a blog post about {topic}"
+            response = openai.Completion.create(
+                engine="davinci",
+                prompt=prompt,
+                max_tokens=500,  # Adjust the length as needed
+                temperature=0.7,  # Adjust creativity (higher values make it more creative)
+                stop=None  # You can add custom stop words to end the text
+            )
+            return response.choices[0].text
+
+        for topic in blogTopics:
+            content = generate_blog_content(topic)
+            blogContent.append(content)
+
+        context['blogContent'] = blogContent
+
+    return render(request, 'generated-blog.html', context)

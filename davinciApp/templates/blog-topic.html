@@ -23,56 +23,45 @@
 
     <div class="container-fluid flex-grow-1 container-p-y">
         <!-- Layout Demo -->
-        <div class="layout-demo-wrapper">
-          <div class ="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">
-                <div class="row">
-                   
-                    <div class="">
-                        <h2>Enter blog idea to generate topic suggesstions</h2>
-                            <form class="" action="#" method="post">
+        <div class="layout-demo-wrapper d-flex align-items-center justify-content-center mt-5">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col">
+                            <h2 class="text-center">Enter blog idea to generate topic suggestions</h2>
+                            <form class="needs-validation" action="#" method="post">
                                 {% csrf_token %}
     
                                 <div class="mb-3">
                                     <label for="blogIdea" class="form-label">Blog Ideas</label>
                                     <input type="text" class="form-control" name="blogIdea" placeholder="Enter the blog ideas" required/>
-    
                                 </div>
-    
     
                                 <div class="mb-3">
                                     <label for="audience" class="form-label">Blog Audience</label>
-                                    <input type="text" class="form-control" name="audience" placeholder="Enter the blog ideas" required/>
-    
+                                    <input type="text" class="form-control" name="audience" placeholder="Enter the blog audience (Beginners, Experts)" required/>
                                 </div>
     
                                 <div class="mb-3">
                                     <label for="keywords" class="form-label">Keywords</label>
-                                    <input type="text" class="form-control" name="keywords" placeholder="Enter the blog ideas"/>
-    
+                                    <input type="text" class="form-control" name="keywords" placeholder="Enter the blog keywords"/>
                                 </div>
     
                                 <div class="mb-3">
-        <button class="btn d-grid w-100" type="submit" style="background-color: #000080; color: #fff;">
-            Generate Now
-        </button>
-    </div>
-    
+                                    <button class="btn btn-primary d-grid" type="submit">
+                                        Generate Nowhhh
+                                    </button>
+                                </div>
                             </form>
+                        </div>
                     </div>
-    
                 </div>
-    
             </div>
-    
-            <div class="col-lg-1"></div>
-          </div>
-          
         </div>
         <!--/ Layout Demo -->
-      </div>
+    </div>
+    
     
       
-</body>
-</html>
+    </body>
+    </html>
