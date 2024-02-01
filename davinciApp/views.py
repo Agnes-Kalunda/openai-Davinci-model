@@ -31,7 +31,7 @@ def blogTopic(request):
             messages.error(request, 'OOPs, we could not generate blog ideas for you, retry')
             return redirect('blog-topic')
 
-    return render(request, 'blog-topicc.html', context)
+    return render(request, 'blog-topic.html', context)
 
 
 
